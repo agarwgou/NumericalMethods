@@ -151,9 +151,9 @@ class AmericanOption():
         self.payoffType = payoffType
     def payoff(self, S):
         if self.payoffType == PayoffType.Call:
-            return max(S - self.strike, 0)
+            return np.maximum(S - self.strike, 0)
         elif self.payoffType == PayoffType.Put:
-            return max(self.strike - S, 0)
+            return np.maximum(self.strike - S, 0)
         else:
             raise Exception("payoffType not supported: ", self.payoffType)
     def valueAtNode(self, t, S, continuation):
@@ -233,7 +233,7 @@ def crrBinomialGAmeEur():
         euroPrc.append(crrBinomialG(S, r, vol, EuropeanOption(1, float(k), PayoffType.Put), 300))
         amerPrc.append(crrBinomialG(S, r, vol, AmericanOption(1, float(k), PayoffType.Put), 300))
     plt.plot(ks, euroPrc, 'y', label = 'euroPut')
-    plt.plot(ks, amerPrc, 'b', label = 'euroPut')
+    plt.plot(ks, amerPrc, 'b', label = 'amerPut')
     plt.legend()
     plt.savefig('../figs/amerPrice.eps', format='eps')
 

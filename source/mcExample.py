@@ -29,7 +29,7 @@ def mcLocalVol(S0, T, r, q, lv, nT, nPaths, trade):
         for j in range(1, nT+1):
             vol = lv.LV((j-1)*dt, math.exp(X))
             a = (r - q - 0.5*vol * vol) * dt # drift
-            b = np.rand.normal(0, sqrtdt) * vol
+            b = np.random.normal(0, sqrtdt) * vol
             X += a + b # update state variable
         h = trade.payoff(math.exp(X))
         sum += h

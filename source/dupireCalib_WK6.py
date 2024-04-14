@@ -86,7 +86,7 @@ def pdeCalibReport(S0, r, impliedVol):
     for i in range(len(ds)):
         for j in range(len(ts)):
             T = ts[j]
-            K = strikeFromDelta(S0, r, 0, T, iv.Vol(T, S0*math.exp(r*T)), ds[i], PayoffType.Put)
+            K = strikeFromDelta(S0, r, 0, T, impliedVol.Vol(T, S0*math.exp(r*T)), ds[i], PayoffType.Put)
             payoff = PayoffType.Put
             trade = EuropeanOption(T, K, payoff)
             vol = impliedVol.Vol(ts[j], K)
